@@ -1,7 +1,7 @@
 import {Router} from 'express'
 const router = Router()
 
-import * as equiposController from '../controllers/jugadores.controller'
+import * as jugadoresController from '../controllers/jugadores.controller'
 
 router.post('/', jugadoresController.createJugador)
 router.get('/', jugadoresController.getJugador)
