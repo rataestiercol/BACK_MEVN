@@ -2,6 +2,10 @@ import Equipo from '../models/Equipo'
 
 export const createEquipo = async (req, res) => {
     const {nombre, logoUrl, emailContacto} = req.body;
+
+    console.log(req.body);
+    console.log({nombre, logoUrl, emailContacto});
+
     const newEquipo = new Equipo({nombre, logoUrl, emailContacto})
     const equipoGuardado = await newEquipo.save()
     
