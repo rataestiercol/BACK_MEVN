@@ -9,4 +9,8 @@ router.get('/:id', jugadoresController.getJugadorById)
 router.put('/:id', jugadoresController.updateJugadorById)
 router.delete('/:id', jugadoresController.deleteJugadorById)
 
+router.put('/addEquipo/:id', jugadoresController.guardarEquipoJugadorById)
+router.get('/equiposJugador/:id', jugadoresController.getEquiposJugador)
+
+
 export default router;

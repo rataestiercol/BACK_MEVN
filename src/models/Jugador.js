@@ -6,7 +6,7 @@ const jugadorSchema = new Schema({
     equipos: [{
         equipo: {
             type: Schema.Types.ObjectId, 
-            ref: 'equipo'
+            ref: 'Equipo'
         },
         dorsal: {type: String}
     }]
