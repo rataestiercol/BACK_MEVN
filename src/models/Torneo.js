@@ -13,22 +13,22 @@ const torneoSchema = new Schema({
         },
         equipoA: { //equipoA que hace referencia a la clase equipo
             type: Schema.Types.ObjectId, 
-            ref: 'equipo',
+            ref: 'Equipo',
             resultado: {type: Number}
         },
         equipoB: { //equipoB que hace referencia a la clase equipo
             type: Schema.Types.ObjectId, 
-            ref: 'equipo',
+            ref: 'Equipo',
             resultado: {type: Number}
         },
         jugadores: [{
             idJugador: { //jugador que hace referencia a la clase jugador
                 type: Schema.Types.ObjectId, 
-                ref: 'jugador'
+                ref: 'Jugador'
             },
             idEquipo: {
                 type: Schema.Types.ObjectId, 
-                ref: 'equipo'
+                ref: 'Equipo'
             },
             goles: {type: Number},
             tarjetasVerdes: {type: Number},
