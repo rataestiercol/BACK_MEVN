@@ -1,5 +1,4 @@
 import Jugador from '../models/Jugador'
-import Equipo from '../models/Equipo'
 
 export const createJugador = async (req, res) => {
     const {nombre, fechaNacimiento} = req.body;

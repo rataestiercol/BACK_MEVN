@@ -60,5 +60,27 @@ export const guardarPartido = async (req, res) => {
 
 export const consultarPartidos = async (req, res) => {
     const { id } = req.params;
-    console.log(id)
+
+
+    // const datosJugadorYEquipos = await Jugador
+    //     .findOne({_id: id })
+    //     .populate("equipos.equipo");
+
+    Torneo.findOne({ id: id })
+        .populate('partido.equipoA')
+        .exec(function (err, story) {
+            if (err) return handleError(err);
+            console.log(story.partido[0].equipoA.nombre);
+            console.log(story)
+        });
+
+        // const datosJugadorYEquipos = await Torneo
+        //     .findOne({ id: id })
+        //     .populate('partido.equipoA')
+        //     .populate('partido.equipoB');
+
+        // console.log(datosJugadorYEquipos.partido[0].equipoA.nombre)
+        // console.log(datosJugadorYEquipos.partido[0].equipoB.nombre)
+
+    res.json({a: "u"});
 }
