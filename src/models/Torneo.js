@@ -7,6 +7,7 @@ const torneoSchema = new Schema({
     numCampos: {type: Number}, //1, 2, 3...
     partido: [{
         campoJuego: {type: String},
+        hora: {type: String},
         estado: { //sin empezar, en juego, terminado, cancelado...
             type: Boolean,
             default: false

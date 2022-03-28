@@ -16,7 +16,10 @@ export const getTorneos = async (req, res) => {
 }
 
 export const getTorneoById = async (req, res) => {
+    const { id } = req.params;
+    const torneo = await Torneo.findById(id);
 
+    res.json(torneo);
 }
 
 export const updateTorneoById = async (req, res) => {
@@ -34,4 +37,28 @@ export const deleteTorneoById = async (req, res) => {
     const torneoEliminado = await Torneo.findByIdAndDelete(id);
 
     res.json(torneoEliminado);
+}
+
+export const guardarPartido = async (req, res) => {
+    const { id } = req.params;
+    const {idEquipoA, idEquipoB, hora, campo} = req.body;
+
+    const result = await Torneo.findByIdAndUpdate (
+        {_id: id},
+        {$push: {
+            'partido': {
+                equipoA: idEquipoA, 
+                equipoB: idEquipoB,
+                campoJuego: campo,
+                hora: hora
+            }
+        }
+    });
+
+    res.json({nombre: "algo"});
+}
+
+export const consultarPartidos = async (req, res) => {
+    const { id } = req.params;
+    console.log(id)
 }
