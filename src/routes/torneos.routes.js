@@ -11,5 +11,6 @@ router.delete('/:id', torneosController.deleteTorneoById)
 router.post('/:id', torneosController.guardarPartido)
 
 router.get('/partidos/:id', torneosController.consultarPartidos)
+router.get('/partido/:id', torneosController.getPartidoById)
 
 export default router;

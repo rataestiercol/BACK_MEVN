@@ -43,7 +43,10 @@ export const guardarPartido = async (req, res) => {
     const { id } = req.params;
     const {idEquipoA, idEquipoB, hora, campo} = req.body;
 
-    const result = await Torneo.findByIdAndUpdate (
+
+    console.log(idEquipoA, idEquipoB, hora, campo)
+
+    const partidoGuardado = await Torneo.findByIdAndUpdate (
         {_id: id},
         {$push: {
             'partido': {
@@ -55,32 +58,30 @@ export const guardarPartido = async (req, res) => {
         }
     });
 
-    res.json({nombre: "algo"});
+    res.json(partidoGuardado);
 }
 
 export const consultarPartidos = async (req, res) => {
     const { id } = req.params;
 
-
-    // const datosJugadorYEquipos = await Jugador
-    //     .findOne({_id: id })
-    //     .populate("equipos.equipo");
-
-    Torneo.findOne({ id: id })
+    const partidos = await Torneo.findById(id)
         .populate('partido.equipoA')
-        .exec(function (err, story) {
-            if (err) return handleError(err);
-            console.log(story.partido[0].equipoA.nombre);
-            console.log(story)
+        .populate('partido.equipoB');
+
+    const partidosTorneo = [];
+
+    partidos.partido.forEach(partido => {
+        partidosTorneo.push({
+            'idPartido': partido.id,
+            'equipoA': partido.equipoA.nombre,
+            'equipoB': partido.equipoB.nombre,
+            'campo': partido.campoJuego,
+            'hora': partido.hora
         });
+    });
+    res.json(partidosTorneo);
+}
 
-        // const datosJugadorYEquipos = await Torneo
-        //     .findOne({ id: id })
-        //     .populate('partido.equipoA')
-        //     .populate('partido.equipoB');
-
-        // console.log(datosJugadorYEquipos.partido[0].equipoA.nombre)
-        // console.log(datosJugadorYEquipos.partido[0].equipoB.nombre)
-
-    res.json({a: "u"});
+export const getPartidoById = async (req, res) => {
+    console.log("ok");
 }
