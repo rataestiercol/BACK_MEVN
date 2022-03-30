@@ -83,5 +83,5 @@ export const consultarPartidos = async (req, res) => {
 }
 
 export const getPartidoById = async (req, res) => {
-    console.log("ok");
+console.log("ok");
 }
