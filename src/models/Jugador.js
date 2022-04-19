@@ -2,14 +2,7 @@ const { Schema, model } = require('mongoose');
 
 const jugadorSchema = new Schema({
     nombre: {type: String},
-    fechaNacimiento: {type: Date},
-    equipos: [{
-        equipo: {
-            type: Schema.Types.ObjectId, 
-            ref: 'Equipo'
-        },
-        dorsal: {type: String}
-    }]
+    fechaNacimiento: {type: Date}
 }, {
     timestamps: true,
     versionKey: false
