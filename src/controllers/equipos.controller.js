@@ -1,4 +1,7 @@
 import Equipo from '../models/Equipo'
+import Jugador from '../models/Jugador'
+var ObjectId = require('mongoose').Types.ObjectId; 
+
 
 export const createEquipo = async (req, res) => {
     const {nombre, logoUrl, emailContacto} = req.body;
@@ -38,3 +41,23 @@ export const deleteEquipoById = async (req, res) => {
 
     res.json(equipoEliminado);
 }
+
+
+export const consultarEquipoYJugadores = async (req, res) => {
+    const { id } = req.params;
+    // busca en bbdd de jugadores el id del equipo
+
+    try {
+        const jugadores = await Jugador
+                .find({ 'equipos.equipo': id })
+                .populate("equipos.equipo");
+
+        res.send(jugadores)
+    }
+    catch(error){
+        console.log(`ERROR: ${error}`);
+    }
+
+}
+
+
